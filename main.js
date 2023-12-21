@@ -66,9 +66,5 @@ const screen_width=800;
 const screen_height=800;
 fill_blackscreen(screen_width,screen_height);
 let seeds =generate_seeds(screen_width,screen_height,10);
-for(let seed in seeds){
-    //console.log(seed+" "+seeds[seed][0]+" "+seeds[seed][1]);
-}
-
 generate_voronoi(screen_width,screen_height,seeds,true);//main function
 generate_dots(seeds);
