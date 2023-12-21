@@ -1,6 +1,6 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-let colors=["green","red","blue","Aqua","Orange","Fuchsia","Teal","Chartreuse"]
+let colors=["green","red","blue","Aqua","Orange","Fuchsia","Teal","Chartreuse","crimson","darkslateblue","gold","	goldenrod"]
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -16,12 +16,18 @@ function fill_blackscreen(height,width,color){
 
 function generate_seeds(height,width,count){
     let seeds=new Object();
-    for (let i=0;i<count;i++){
-        let color=colors[getRandomInt(colors.length)];
+    for (let i=0,clr=0;i<count;i++){
+        let color;
+        if (clr===colors.length)clr=1;
+        else {
+            color=colors[clr];
+            clr++;
+        }
+        
         let x=getRandomInt(height);
         let y=getRandomInt(width);
         seeds[color]=[x,y];
-        //console.log(color+" "+ x+" "+y);
+        console.log(color+" "+ x+" "+y);
     }
     return seeds;
 }
@@ -61,7 +67,7 @@ const screen_height=800;
 fill_blackscreen(screen_width,screen_height);
 let seeds =generate_seeds(screen_width,screen_height,10);
 for(let seed in seeds){
-    console.log(seed+" "+seeds[seed][0]+" "+seeds[seed][1]);
+    //console.log(seed+" "+seeds[seed][0]+" "+seeds[seed][1]);
 }
 
 generate_voronoi(screen_width,screen_height,seeds,true);//main function
